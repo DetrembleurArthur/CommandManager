@@ -8,6 +8,7 @@ public class Command extends Named
     private ArrayList<Command> subcommands;
     private HashMap<Integer, Action> prototypes;
 
+
     public Command(String name)
     {
         super(name);
@@ -38,25 +39,17 @@ public class Command extends Named
         if(!undefined)
         {
             var action = prototypes.get(args.size());
-            if(action == null)
+            if(action != null)
             {
-                action = prototypes.get(-1);
-                if(action == null)
-                {
-                    throw new Exception("No prototype with " + args.size() + " arguments for " + getFullName());
-                }
+                return action.run(args);
             }
-            return action.run(args);
         }
-        else
+        var action = prototypes.get(-1);
+        if(action == null)
         {
-            var action = prototypes.get(-1);
-            if(action == null)
-            {
-                throw new Exception("No prototype with ? arguments for " + getFullName());
-            }
-            return action.run(args);
+            throw new Exception("No prototype with " + args.size() + " arguments for " + getFullName());
         }
+        return action.run(args);
     }
 
     public Command createSub(String name)

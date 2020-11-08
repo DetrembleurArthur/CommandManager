@@ -1,3 +1,2 @@
 
-
-second.add add 1 2 jean
+deco ask "Enter something: "

@@ -63,7 +63,7 @@ public class Attributes
         return root;
     }
 
-    public boolean isHas()
+    public boolean has()
     {
         return has;
     }

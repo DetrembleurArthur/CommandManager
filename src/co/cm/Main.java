@@ -10,18 +10,15 @@ public class Main {
 
         Context context = new Context();
 
-        Package pkg = new Package("basic");
-        Package pkg1 = new Package("second");
+        Package pkg = new Package("std");
 
-        Command add = new Command("add").setAction(2, args1 -> String.valueOf(Integer.parseInt(args1.get(0)) + Integer.parseInt(args1.get(1))));
-
-        pkg.add(add);
-
-        Command add1 = new Command("add").setAction(2, args1 -> args1.get(0) + "+" + args1.get(1));
-        pkg1.add(add1);
+        Command nop = new Command("deco").setAction(1, args1 -> "[{(" + args1.get(0) + ")}]");
+        Command ask = new Command("ask").setAction(1, args1 -> JOptionPane.showInputDialog(args1.get(0)));
+        pkg.add(nop);
+        pkg.add(ask);
 
         context.getPackages().add(pkg);
-        context.getPackages().add(pkg1);
+
 
         interpreter.setContext(context);
 

@@ -2,7 +2,6 @@ package co.cm;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class Interpreter
 {
@@ -20,15 +19,19 @@ public class Interpreter
         return context;
     }
 
-    public void setContext(Context context)
+    public void updateBulk()
     {
-        this.context = context;
         commandBulk.clear();
         for(var pkg : context.getPackages())
         {
             commandBulk.addAll(pkg.bulkCommands());
         }
-        System.err.println(commandBulk.get(0));
+    }
+
+    public void setContext(Context context)
+    {
+        this.context = context;
+        updateBulk();
     }
 
     public static ArrayList<String> parse(String expr)
@@ -92,11 +95,6 @@ public class Interpreter
         return null;
     }
 
-    public String[] attributes(String expr)
-    {
-        return expr.split(":");
-    }
-
     public String execute(ArrayList<String> tokens, Command command, int i, Attributes attributes) throws Exception
     {
         if(command != null)
@@ -138,7 +136,7 @@ public class Interpreter
                 for (int j = i; j < tokens.size() && (args.size() < nargs || attributes.isUndefined() || nargs == -1); j++)
                 {
                     var attr = new Attributes(tokens.get(j));
-                    if(attr.isHas())
+                    if(attr.has())
                         tokens.set(j, tokens.get(j).substring(0, tokens.get(j).indexOf(':')));
                     Command cmd = null;
                     if(!attr.isConstexpr())
@@ -162,11 +160,12 @@ public class Interpreter
             if(!attributes.isUndefined() && attributes.getNargs() > -2 && attributes.getNargs() != args.size())
                 throw new Exception(nargs + " arguments given but expected " + attributes.getNargs());
             return command.execute(args, attributes.isUndefined());
+
         }
         else
         {
             var attr = new Attributes(tokens.get(0));
-            if(attr.isHas())
+            if(attr.has())
                 tokens.set(0, tokens.get(0).substring(0, tokens.get(0).indexOf(':')));
             Command cmd = bulkCommand(tokens.get(0));
             if(cmd == null)
