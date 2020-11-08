@@ -7,12 +7,12 @@ import java.util.HashSet;
 public class Interpreter
 {
     private Context context;
-    private HashSet<Command> commandBulk;
+    private ArrayList<Command> commandBulk;
 
     public Interpreter()
     {
         context = new Context();
-        commandBulk = new HashSet<>();
+        commandBulk = new ArrayList<>();
     }
 
     public Context getContext()
@@ -28,6 +28,7 @@ public class Interpreter
         {
             commandBulk.addAll(pkg.bulkCommands());
         }
+        System.err.println(commandBulk.get(0));
     }
 
     public static ArrayList<String> parse(String expr)

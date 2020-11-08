@@ -1,15 +1,16 @@
 package co.cm;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Package extends Named
 {
-    private HashSet<Named> namedSet;
+    private ArrayList<Named> namedSet;
 
     public Package(String name)
     {
         super(name);
-        namedSet = new HashSet<>();
+        namedSet = new ArrayList<>();
     }
 
     public Package add(Named named)
@@ -19,12 +20,12 @@ public class Package extends Named
         return this;
     }
 
-    public HashSet<Named> getNamedSet()
+    public ArrayList<Named> getNamedSet()
     {
         return namedSet;
     }
 
-    public void setNamedSet(HashSet<Named> namedSet)
+    public void setNamedSet(ArrayList<Named> namedSet)
     {
         this.namedSet = namedSet;
     }

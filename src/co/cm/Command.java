@@ -5,13 +5,13 @@ import java.util.*;
 public class Command extends Named
 {
     private Named superCommand;
-    private HashSet<Command> subcommands;
+    private ArrayList<Command> subcommands;
     private HashMap<Integer, Action> prototypes;
 
     public Command(String name)
     {
         super(name);
-        subcommands = new HashSet<>();
+        subcommands = new ArrayList<>();
         prototypes = new HashMap<>();
     }
 
@@ -67,12 +67,12 @@ public class Command extends Named
     }
 
 
-    public HashSet<Command> getSubcommands()
+    public ArrayList<Command> getSubcommands()
     {
         return subcommands;
     }
 
-    public void setSubcommands(HashSet<Command> subcommands)
+    public void setSubcommands(ArrayList<Command> subcommands)
     {
         this.subcommands = subcommands;
     }

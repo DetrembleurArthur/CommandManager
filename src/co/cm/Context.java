@@ -1,22 +1,23 @@
 package co.cm;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Context
 {
-    private HashSet<Package> packages;
+    private ArrayList<Package> packages;
 
     public Context()
     {
-        packages = new HashSet<>();
+        packages = new ArrayList<>();
     }
 
-    public HashSet<Package> getPackages()
+    public ArrayList<Package> getPackages()
     {
         return packages;
     }
 
-    public void setPackages(HashSet<Package> packages)
+    public void setPackages(ArrayList<Package> packages)
     {
         this.packages = packages;
     }

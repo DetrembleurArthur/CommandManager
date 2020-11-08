@@ -20,8 +20,6 @@ public class Main {
         Command add1 = new Command("add").setAction(2, args1 -> args1.get(0) + "+" + args1.get(1));
         pkg1.add(add1);
 
-        pkg.add(new Command("end").setAction(0, args1 -> "putelool"));
-
         context.getPackages().add(pkg);
         context.getPackages().add(pkg1);
 
